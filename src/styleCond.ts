@@ -32,17 +32,17 @@ const getValueMatchingType = (
   }
 };
 
-const genCssContent = (rule: CssContent): CondRule => [
+const generateCssContent = (rule: CssContent): CondRule => [
   (value) => value,
   always(rule),
 ];
 
-const genMatchingTuple = (rule: ValueMatchingTuple): CondRule => {
+const generateMatchingTuple = (rule: ValueMatchingTuple): CondRule => {
   const [valuePredicate, cssText] = rule;
   return [(value) => valuePredicate(value), always(cssText)];
 };
 
-const genMatchingTupleFromObject = (rule: ValueMatchingObject): CondRule[] => {
+const generateMatchingTupleFromObject = (rule: ValueMatchingObject): CondRule[] => {
   return toPairs<CssContent>(rule).map<CondRule>(([propValue, cssText]) => [
     (value) => {
       if (is.number(value)) {
@@ -59,32 +59,32 @@ const genMatchingTupleFromObject = (rule: ValueMatchingObject): CondRule[] => {
   ]);
 };
 
-const genMatchingList = (
+const generateMatchingList = (
   rules: ValueMatchingList,
 ): CondRule[] => {
   return rules
     .map((rule) => {
       if (getValueMatchingType(rule) === "ValueMatchingTuple") {
-        return [genMatchingTuple(rule as ValueMatchingTuple)];
+        return [generateMatchingTuple(rule as ValueMatchingTuple)];
       } else {
-        return genMatchingTupleFromObject(rule as ValueMatchingObject);
+        return generateMatchingTupleFromObject(rule as ValueMatchingObject);
       }
     })
     .flat();
 };
 
-const genPropRules = (
+const generatePropRules = (
   valueMatching: ValueMatchingCollection,
 ): CondRule[] => {
   switch (getValueMatchingType(valueMatching)) {
     case "CssContent":
-      return [genCssContent(valueMatching as CssContent)];
+      return [generateCssContent(valueMatching as CssContent)];
     case "ValueMatchingTuple":
-      return [genMatchingTuple(valueMatching as ValueMatchingTuple)];
+      return [generateMatchingTuple(valueMatching as ValueMatchingTuple)];
     case "ValueMatchingObject":
-      return genMatchingTupleFromObject(valueMatching as ValueMatchingObject);
+      return generateMatchingTupleFromObject(valueMatching as ValueMatchingObject);
     case "ValueMatchingList":
-      return genMatchingList(valueMatching as ValueMatchingList);
+      return generateMatchingList(valueMatching as ValueMatchingList);
   }
 };
 
@@ -94,7 +94,7 @@ export const styleCond = <T extends PropsType>(propConf: PropRuleConf<T>) => {
       is.function_(propConf) ? propConf(props) : propConf,
     );
     return confList.flatMap(([key, conf]) => {
-      const rules = genPropRules(conf);
+      const rules = generatePropRules(conf);
       const propValue = props[key];
       return cond(rules)(propValue);
     });
