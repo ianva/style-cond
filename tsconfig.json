@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "sourceMap": true,
     "declaration": true,
+    "declarationDir": "./build",
     "removeComments": true,
     "resolveJsonModule": true,
     "module": "esnext",
