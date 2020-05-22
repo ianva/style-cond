@@ -37,9 +37,9 @@ const genCssContent = (rule: CssContent): CondRule => [
   always(rule),
 ];
 
-const genMatchingTuple = <T,>(rule: ValueMatchingTuple, props: T): CondRule => {
+const genMatchingTuple = (rule: ValueMatchingTuple): CondRule => {
   const [valuePredicate, cssText] = rule;
-  return [(value) => valuePredicate(value, props), always(cssText)];
+  return [(value) => valuePredicate(value), always(cssText)];
 };
 
 const genMatchingTupleFromObject = (rule: ValueMatchingObject): CondRule[] => {
@@ -59,14 +59,13 @@ const genMatchingTupleFromObject = (rule: ValueMatchingObject): CondRule[] => {
   ]);
 };
 
-const genMatchingList = <T,>(
+const genMatchingList = (
   rules: ValueMatchingList,
-  props: T,
 ): CondRule[] => {
   return rules
     .map((rule) => {
       if (getValueMatchingType(rule) === "ValueMatchingTuple") {
-        return [genMatchingTuple<T>(rule as ValueMatchingTuple, props)];
+        return [genMatchingTuple(rule as ValueMatchingTuple)];
       } else {
         return genMatchingTupleFromObject(rule as ValueMatchingObject);
       }
@@ -74,19 +73,18 @@ const genMatchingList = <T,>(
     .flat();
 };
 
-const genPropRules = <T,>(
+const genPropRules = (
   valueMatching: ValueMatchingCollection,
-  props: T,
 ): CondRule[] => {
   switch (getValueMatchingType(valueMatching)) {
     case "CssContent":
       return [genCssContent(valueMatching as CssContent)];
     case "ValueMatchingTuple":
-      return [genMatchingTuple<T>(valueMatching as ValueMatchingTuple, props)];
+      return [genMatchingTuple(valueMatching as ValueMatchingTuple)];
     case "ValueMatchingObject":
       return genMatchingTupleFromObject(valueMatching as ValueMatchingObject);
     case "ValueMatchingList":
-      return genMatchingList<T>(valueMatching as ValueMatchingList, props);
+      return genMatchingList(valueMatching as ValueMatchingList);
   }
 };
 
@@ -96,7 +94,7 @@ export const styleCond = <T extends PropsType>(propConf: PropRuleConf<T>) => {
       is.function_(propConf) ? propConf(props) : propConf,
     );
     return confList.flatMap(([key, conf]) => {
-      const rules = genPropRules<T>(conf, props);
+      const rules = genPropRules(conf);
       const propValue = props[key];
       return cond(rules)(propValue);
     });

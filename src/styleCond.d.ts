@@ -4,7 +4,7 @@ export type PropsType = {
   [K in string | number | symbol]: any;
 };
 export type CssContent = FlattenSimpleInterpolation;
-type Predicate = (value: any, props: any) => boolean;
+type Predicate = (value: any) => boolean;
 export type CondRule = [Predicate, any];
 export type ValueMatchingTuple = CondRule;
 export type ValueMatchingObject = {
