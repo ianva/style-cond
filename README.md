@@ -1,6 +1,6 @@
 # Style-cond
 
-As CSS selectors to code style of style-components.  
+As CSS selectors to code styles in style-components.  [[中文文档](./zh-cn.md)]
 
 ## Install 
 
@@ -16,7 +16,7 @@ yarn add styled-cond
 
 ## Usage
 
-### Select props
+### Select props:
 ```
 export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: boolean }>`
   border-radius: 3px;
@@ -33,7 +33,7 @@ export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: bo
 `;
 ```
 
-### Select value of props
+### Select value of props:
 ```
 styled.button<{size: s | m | l | xl}>`
   font-size: 14px;
@@ -59,7 +59,7 @@ styled.button<{size: s | m | l | xl}>`
 `
 ```
 
-### Pass props
+### Pass props:
 ```
 export const NavigationButton = styled.button<variant: "primary" | "default">`
   ${styleCond((props) => ({
