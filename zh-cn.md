@@ -35,9 +35,10 @@ export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: bo
 
 ### 选择属性的值
 ```
-styled.button<{size: s | m | l | xl}>`
+styled.button<{size: s | m | l | xl; hasBorder: boolean; index:number }>`
   font-size: 14px;
   border-radius: 12px;
+  border: 1px solid #c00;
 
   ${styleCond(
     size: {
@@ -54,6 +55,19 @@ styled.button<{size: s | m | l | xl}>`
       xl: css`
         padding: 0 14px;
       `
+    },
+    hasBorder: {
+      false: css`
+        border: 0;
+      `
+    },
+    index: {
+      1: {
+        font-size: 16px
+      }
+      2: {
+        font-size: 18px
+      }
     }
   )}
 `
@@ -105,6 +119,38 @@ export const Gap = styled.input<{ isFocused: boolean; isInputted: boolean; isInt
         }
       `]
   }))}
+`;
+```
+
+### 复杂条件的选择器
+```
+export const Foo = styled.div<{ max:number }>`
+  ${styleCond({
+    color: black;
+
+    max: [
+      [
+        value => value > 100,
+        css`
+          color: red;
+        `
+      ],
+      [
+        value => value > 50,
+        css`
+          color: green;
+        `
+      ],
+      {
+        1: css`
+          color: blueviolet;
+        `,
+        2: css`
+          color: pink;
+        `
+      }
+    ]
+  })}
 `;
 ```
 

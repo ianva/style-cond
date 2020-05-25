@@ -16,9 +16,9 @@ yarn add styled-cond
 
 ## Usage
 
-### Select props:
+### Select props
 ```
-export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: boolean }>`
+export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: boolean; }>`
   border-radius: 3px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 
@@ -33,11 +33,12 @@ export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: bo
 `;
 ```
 
-### Select value of props:
+### Select value of props
 ```
-styled.button<{size: s | m | l | xl}>`
+styled.button<{size: s | m | l | xl; hasBorder: boolean; index:number }>`
   font-size: 14px;
   border-radius: 12px;
+  border: 1px solid #c00;
 
   ${styleCond(
     size: {
@@ -54,12 +55,25 @@ styled.button<{size: s | m | l | xl}>`
       xl: css`
         padding: 0 14px;
       `
+    },
+    hasBorder: {
+      false: css`
+        border: 0;
+      `
+    },
+    index: {
+      1: {
+        font-size: 16px
+      }
+      2: {
+        font-size: 18px
+      }
     }
   )}
 `
 ```
 
-### Pass props:
+### Pass props
 ```
 export const NavigationButton = styled.button<variant: "primary" | "default">`
   ${styleCond((props) => ({
@@ -108,3 +122,34 @@ export const Gap = styled.input<{ isFocused: boolean; isInputted: boolean; isInt
 `;
 ```
 
+### Complex conditions
+```
+export const Foo = styled.div<{ max:number }>`
+  ${styleCond({
+    color: black;
+
+    max: [
+      [
+        value => value > 100,
+        css`
+          color: red;
+        `
+      ],
+      [
+        value => value > 50,
+        css`
+          color: green;
+        `
+      ],
+      {
+        1: css`
+          color: blueviolet;
+        `,
+        2: css`
+          color: pink;
+        `
+      }
+    ]
+  })}
+`;
+```

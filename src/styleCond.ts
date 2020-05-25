@@ -47,10 +47,8 @@ const generateMatchingTupleFromObject = (rule: ValueMatchingObject): CondRule[] 
     (value) => {
       if (is.number(value)) {
         return value === stringToNumber(propValue);
-      } else if (value === true) {
-        return true;
-      } else if (value === false) {
-        return false;
+      } else if (is.boolean(value)) {
+        return value.toString() === propValue;
       } else {
         return value === propValue;
       }
@@ -93,10 +91,13 @@ export const styleCond = <T extends PropsType>(propConf: PropRuleConf<T>) => {
     const confList = toPairs(
       is.function_(propConf) ? propConf(props) : propConf,
     );
-    return confList.flatMap(([key, conf]) => {
-      const rules = generatePropRules(conf);
-      const propValue = props[key];
-      return cond(rules)(propValue);
-    });
+    return confList
+      .filter(([key]) => !is.undefined(props[key]))
+      .flatMap(([key, conf]) => {
+        const rules = generatePropRules(conf);
+        const propValue = props[key];
+        return cond(rules)(propValue);
+      })
+      .filter((value) => !is.undefined(value));
   };
 };
