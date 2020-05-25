@@ -6,12 +6,12 @@ A tool to do pattern matching for props of style-components, just like write sty
 
 npm:
 ```
-npm i styled-cond
+npm i style-cond
 ```
 
 yarn:
 ```
-yarn add styled-cond
+yarn add style-cond
 ```
 
 ## Usage
