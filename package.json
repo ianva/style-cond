@@ -2,7 +2,7 @@
   "name": "style-cond",
   "private": true,
   "main": "./build/styleCond.js",
-  "types": "./src/styleCond.js",
+  "types": "./build/styleCond.d.ts",
   "scripts": {
     "build": "rollup -c"
   },
@@ -13,9 +13,9 @@
     "ramda": "^0.27.0"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.27.0",
+    "@wessberg/rollup-plugin-ts": "^1.2.24",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-import-resolver-alias": "^1.1.2",

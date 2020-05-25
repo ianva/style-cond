@@ -1,7 +1,7 @@
 import {always, cond, toPairs} from "ramda";
 import is from "@sindresorhus/is";
 import {stringToNumber} from "./util";
-import {
+import type {
   CondRule,
   CssContent,
   PropRuleConf,
