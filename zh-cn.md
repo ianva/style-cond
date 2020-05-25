@@ -1,6 +1,6 @@
 # Style-cond
 
-As CSS selectors to code style of style-components.  
+像写 CSS 选择器一样，写 style-components 组件的样式。
 
 ## Install 
 
@@ -16,7 +16,7 @@ yarn add styled-cond
 
 ## Usage
 
-### Select props
+### 选择属性
 ```
 export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: boolean }>`
   border-radius: 3px;
@@ -33,7 +33,7 @@ export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: bo
 `;
 ```
 
-### Select value of props
+### 选择属性的值
 ```
 styled.button<{size: s | m | l | xl}>`
   font-size: 14px;
@@ -59,7 +59,7 @@ styled.button<{size: s | m | l | xl}>`
 `
 ```
 
-### Pass props
+### 传递 props
 ```
 export const NavigationButton = styled.button<variant: "primary" | "default">`
   ${styleCond((props) => ({
@@ -86,7 +86,7 @@ export const NavigationButton = styled.button<variant: "primary" | "default">`
 ```
 
 
-### Select value by specify condition
+### 根据条件选择属性
 ```
 export const Gap = styled.input<{ isFocused: boolean; isInputted: boolean; isInteractive: boolean }>`
   ${styleCond((props)=>({
