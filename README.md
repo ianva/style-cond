@@ -1,6 +1,6 @@
 # Style-cond
 
-As CSS selectors to code styles in style-components. 
+A tool to do pattern matching for props of style-components, just like write styles using css selectors.
 
 ## Install 
 
