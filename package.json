@@ -1,6 +1,6 @@
 {
   "name": "style-cond",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./build/styleCond.js",
   "types": "./build/styleCond.d.ts",
   "scripts": {

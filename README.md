@@ -76,6 +76,7 @@ styled.button<{size: s | m | l | xl; hasBorder: boolean; index:number }>`
 ### Passing props
 ```ts
 export const NavigationButton = styled.button<variant: "primary" | "default">`
+
   ${styleCond((props) => ({
     variant: {
       primary: css`
@@ -125,9 +126,9 @@ export const Gap = styled.input<{ isFocused: boolean; isInputted: boolean; isInt
 ### Complex conditions
 ```ts
 export const Foo = styled.div<{ max:number }>`
-  ${styleCond({
-    color: black;
+  color: black;
 
+  ${styleCond({
     max: [
       [
         value => value > 100,
