@@ -1,6 +1,6 @@
 # Style-cond
 
-As CSS selectors to code styles in style-components.  [[中文文档](./zh-cn.md)]
+As CSS selectors to code styles in style-components. 
 
 ## Install 
 
@@ -16,8 +16,8 @@ yarn add styled-cond
 
 ## Usage
 
-### Select props
-```
+### Matching specify props
+```ts
 export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: boolean; }>`
   border-radius: 3px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -33,8 +33,8 @@ export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: bo
 `;
 ```
 
-### Select value of props
-```
+### Matching value fo props
+```ts
 styled.button<{size: s | m | l | xl; hasBorder: boolean; index:number }>`
   font-size: 14px;
   border-radius: 12px;
@@ -73,8 +73,8 @@ styled.button<{size: s | m | l | xl; hasBorder: boolean; index:number }>`
 `
 ```
 
-### Pass props
-```
+### Passing props
+```ts
 export const NavigationButton = styled.button<variant: "primary" | "default">`
   ${styleCond((props) => ({
     variant: {
@@ -100,8 +100,8 @@ export const NavigationButton = styled.button<variant: "primary" | "default">`
 ```
 
 
-### Select value by specify condition
-```
+### Matching value by specify condition
+```ts
 export const Gap = styled.input<{ isFocused: boolean; isInputted: boolean; isInteractive: boolean }>`
   ${styleCond((props)=>({
     isInputted: [
@@ -123,7 +123,7 @@ export const Gap = styled.input<{ isFocused: boolean; isInputted: boolean; isInt
 ```
 
 ### Complex conditions
-```
+```ts
 export const Foo = styled.div<{ max:number }>`
   ${styleCond({
     color: black;
