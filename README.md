@@ -35,7 +35,7 @@ export const AudioPlay = styled.div<{ isHidden: boolean; isAudioPlayComplete: bo
 
 ### Matching value of props
 ```ts
-styled.button<{size: s | m | l | xl; hasBorder: boolean; index:number }>`
+styled.button<{size: "s" | "m" | "l" | "xl"; hasBorder: boolean; index:number }>`
   font-size: 14px;
   border-radius: 12px;
   border: 1px solid #c00;
