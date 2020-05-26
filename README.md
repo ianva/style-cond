@@ -75,7 +75,7 @@ styled.button<{size: s | m | l | xl; hasBorder: boolean; index:number }>`
 
 ### Passing props
 ```ts
-export const NavigationButton = styled.button<variant: "primary" | "default">`
+export const NavigationButton = styled.button<variant: "primary" | "default"; isDisabled: boolean>`
 
   ${styleCond((props) => ({
     variant: {
