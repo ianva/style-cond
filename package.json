@@ -1,8 +1,10 @@
 {
   "name": "style-cond",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "./build/styleCond.js",
   "types": "./build/styleCond.d.ts",
+  "license": "MIT",
+  "author": "ianva",
   "scripts": {
     "build": "rollup -c"
   },
