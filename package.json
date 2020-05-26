@@ -1,11 +1,21 @@
 {
   "name": "style-cond",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "./build/styleCond.js",
   "types": "./build/styleCond.d.ts",
   "scripts": {
     "build": "rollup -c"
   },
+  "keywords": [
+    "styled-components",
+    "css",
+    "tools",
+    "typescript",
+    "css-in-js",
+    "react props",
+    "dynamic css",
+    "react"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:ianva/style-cond.git"
